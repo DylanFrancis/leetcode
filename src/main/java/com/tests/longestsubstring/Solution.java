@@ -1,10 +1,10 @@
 package com.tests.longestsubstring;
 
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Solution {
-
     public int lengthOfLongestSubstring2(String theString) {
         if (theString.isEmpty()) {
             return 0;
@@ -16,29 +16,39 @@ public class Solution {
 
         int longest = 0;
         char[] chars = theString.toCharArray();
-        StringBuilder stringBuilder = new StringBuilder();
+        int length = theString.length();
+        Map<Character, Integer> map = new LinkedHashMap<>(length < 3 ? length + 1 : (int) ((float) length / 0.75F + 1.0F));
 
         for (int x = 0; x < chars.length; x++) {
             char c = chars[x];
 
-            int i = stringBuilder.indexOf(c + "");
-            if (i != -1) {
+            System.out.println(map);
+            Integer i = map.get(c);
+            if (i != null) {
 
-                if (stringBuilder.length() - 1 == i) {
-                    stringBuilder.setLength(0);
-                    stringBuilder.append(c);
+                if (map.size() - 1 == 0) {
+                    map.clear();
+                    map.put(c, x);
                 } else  {
-                    String toSet = stringBuilder.substring(i + 1, stringBuilder.length());
-                    stringBuilder.setLength(0);
-                    stringBuilder.append(toSet).append(c);
+                    Iterator<Character> iterator = map.keySet().iterator();
+
+                    while (iterator.hasNext() && iterator.next() != c) {
+                        iterator.remove();
+                    }
+
+                    if (iterator.hasNext()) {
+                        iterator.remove();
+                    }
+
+                    map.put(c, x);
                 }
 
             } else {
-                stringBuilder.append(c);
+                map.put(c, x);
             }
 
-            if (stringBuilder.length() > longest) {
-                longest = stringBuilder.length();
+            if (map.size() > longest) {
+                longest = map.size();
             }
         }
 

@@ -14,6 +14,7 @@ public class SolutionTests {
             new Pair<>("pwwkew", 3),
             new Pair<>("au", 2),
             new Pair<>("abba", 2),
+            new Pair<>("dvdf", 3),
             new Pair<>("aab", 2));
 
     @Test
@@ -25,7 +26,7 @@ public class SolutionTests {
 
     @Test
     public void specificCase() {
-        test("dvdf", 3);
+        test("pwwkew", 3);
     }
 
     private void test(String theString, int expected) {
