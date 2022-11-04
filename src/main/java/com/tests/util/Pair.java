@@ -1,4 +1,4 @@
-package com.tests;
+package com.tests.util;
 
 public class Pair<K, V> {
     private final K key;

@@ -1,6 +1,6 @@
 package com.tests.longestsubstring;
 
-import com.tests.Pair;
+import com.tests.util.Pair;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
